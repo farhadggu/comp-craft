@@ -9,6 +9,7 @@ const { program } = require("commander");
 // * import module commands
 const addComponent = require("./commands/addComponent");
 const listComponents = require("./commands/listComponents");
+const removeComponent = require("./commands/removeComponent");
 const { setPreferredEditor } = require("./commands/setEditor");
 const generateComponent = require("./commands/generateComponent");
 
@@ -61,5 +62,11 @@ program
   .command("list")
   .description("List all global component templates")
   .action(() => listComponents(globalStorePath));
+
+// * Command to remove component
+program
+  .command("remove [componentName]")
+  .description("Remove a React component from the global store")
+  .action((componentName) => removeComponent(componentName, globalStorePath));
 
 program.parse();
