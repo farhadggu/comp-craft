@@ -3,6 +3,36 @@ const path = require("path");
 const chalk = require("chalk");
 const inquirer = require("inquirer");
 
+const configFilePath = path.join(require("os").homedir(), ".comp-craft", "config.json");
+
+// Ensure config file exists and has a default editor path
+if (!fs.existsSync(configFilePath)) {
+  fs.writeFileSync(configFilePath, JSON.stringify({ editorPath: "" }, null, 2));
+}
+
+// Load the editor path from the config file
+const getEditorPath = () => {
+  const config = JSON.parse(fs.readFileSync(configFilePath, "utf8"));
+  return config.editorPath || "";
+};
+
+// Save the editor path to the config file
+const setEditorPath = async () => {
+  const { editorPath } = await inquirer.prompt([
+    {
+      type: "input",
+      name: "editorPath",
+      message: "Enter the full path to your code editor (e.g., C:\\Program Files\\Microsoft VS Code\\Code.exe):",
+      validate: (input) => (input ? true : "Editor path is required."),
+    },
+  ]);
+  const config = JSON.parse(fs.readFileSync(configFilePath, "utf8"));
+  config.editorPath = editorPath;
+  fs.writeFileSync(configFilePath, JSON.stringify(config, null, 2));
+  console.log(chalk.green(`Editor path saved: ${editorPath}`));
+  return editorPath;
+};
+
 const generateComponent = async (componentName, globalStorePath) => {
   // If componentName is not provided, prompt the user for it
   if (!componentName) {
@@ -39,7 +69,6 @@ const generateComponent = async (componentName, globalStorePath) => {
     console.log(chalk.green(`Using updated template for ${componentName}.`));
   } else {
     if (componentType === "tsx") {
-      // TypeScript template
       componentCode = `
 import React from "react";
 
@@ -54,7 +83,6 @@ const ${componentName}: React.FC<${componentName}Props> = ({ children }) => {
 export default ${componentName};
       `;
     } else {
-      // JavaScript template
       componentCode = `
 import React from "react";
 
@@ -71,15 +99,19 @@ export default ${componentName};
   fs.writeFileSync(templatePath, componentCode);
   console.log(chalk.green(`Component ${componentName} generated and saved in the global store.`));
 
+  // Get or prompt for the editor path
+  let editorPath = getEditorPath();
+  if (!editorPath) {
+    console.log(chalk.yellow("Editor path not set. Let's set it up now."));
+    editorPath = await setEditorPath();
+  }
+
   // Open the component in the preferred editor
-  const editor = "C:\\Users\\Farhad\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"; // Adjust based on your installation
   try {
-    require("child_process").spawn(editor, [templatePath], { stdio: "inherit" });
+    require("child_process").spawn(editorPath, [templatePath], { stdio: "inherit" });
     console.log(chalk.green(`Opened ${componentName} in your editor.`));
   } catch (error) {
-    console.log(
-      chalk.red("Failed to open the editor. Please ensure the editor is correctly installed and available in the PATH.")
-    );
+    console.log(chalk.red("Failed to open the editor. Please ensure the editor path is correctly set."));
   }
 };
 
