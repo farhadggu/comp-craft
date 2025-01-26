@@ -2,7 +2,7 @@ const fs = require("fs-extra");
 const path = require("path");
 const chalk = require("chalk");
 const inquirer = require("inquirer");
-const { selectDirectory } = require("./selectDirectory");
+const { selectDirectory } = require("../utils/selectDirectory");
 
 const addComponent = async (componentName, globalStorePath) => {
   const templates = fs.readdirSync(globalStorePath).filter((file) => file.endsWith(".tsx") || file.endsWith(".jsx"));
