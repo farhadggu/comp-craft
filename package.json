@@ -1,0 +1,25 @@
+{
+  "name": "comp-craft",
+  "version": "1.0.3",
+  "description": "A CLI tool for generating React components",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "comp-craft": "./index.js"
+  },
+  "keywords": [
+    "react",
+    "cli",
+    "components"
+  ],
+  "author": "Farhad Gharagozlu - farhadggu@gmail.com",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^13.0.0",
+    "fs-extra": "^11.2.0",
+    "inquirer": "^8.2.6"
+  }
+}
