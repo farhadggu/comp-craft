@@ -8,6 +8,8 @@ const { program } = require("commander");
 
 // * import module commands
 const addComponent = require("./commands/addComponent");
+const listComponents = require("./commands/listComponents");
+const { setPreferredEditor } = require("./commands/setEditor");
 const generateComponent = require("./commands/generateComponent");
 
 // * global path
@@ -40,16 +42,24 @@ program.name("comp-craft").description("CLI to generate React components").versi
 program
   .command("generate [componentName]")
   .description("Generate a new React component")
-  .action(async (componentName) => {
-    await generateComponent(componentName, globalStorePath);
-  });
+  .action((componentName) => generateComponent(componentName, globalStorePath));
 
 // * Command to add an existing global component to the new project directory
 program
   .command("add [componentName]")
   .description("Add an existing global component to the current project")
-  .action(async (componentName) => {
-    await addComponent(componentName, globalStorePath);
-  });
+  .action((componentName) => addComponent(componentName, globalStorePath));
+
+// * Command to set preferred editor
+program
+  .command("set-editor")
+  .description("Set your preferred code editor")
+  .action(() => setPreferredEditor(globalConfigPath));
+
+// * Command to list all global templates
+program
+  .command("list")
+  .description("List all global component templates")
+  .action(() => listComponents(globalStorePath));
 
 program.parse();
