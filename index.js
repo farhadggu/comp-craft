@@ -7,6 +7,7 @@ const fs = require("fs-extra");
 const { program } = require("commander");
 
 // * import module commands
+const addComponent = require("./commands/addComponent");
 const generateComponent = require("./commands/generateComponent");
 
 // * global path
@@ -41,6 +42,14 @@ program
   .description("Generate a new React component")
   .action(async (componentName) => {
     await generateComponent(componentName, globalStorePath);
+  });
+
+// * Command to add an existing global component to the new project directory
+program
+  .command("add [componentName]")
+  .description("Add an existing global component to the current project")
+  .action(async (componentName) => {
+    await addComponent(componentName, globalStorePath);
   });
 
 program.parse();
