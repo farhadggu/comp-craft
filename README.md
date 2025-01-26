@@ -108,6 +108,24 @@ comp-craft set-editor
 
 ---
 
+### ⚙️ Setting Up the Editor Path
+
+If you're using a specific editor and CompCraft cannot open it directly, you'll need to provide the **full pathname** to the editor's executable.
+
+For example:
+
+- **VS Code**: `/path/to/code` (commonly install on path `C:\Users\<your name>\AppData\Local\Programs\Microsoft VS Code\Code.exe`)
+
+You can set the editor path during the `set-editor` command:
+
+```bash
+comp-craft set-editor
+```
+
+If unsure, find your editor's path by searching online or consulting the editor's documentation.
+
+---
+
 ## 🤓 Example Workflow
 
 1. Generate a reusable button component:
