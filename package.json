@@ -1,7 +1,7 @@
 {
   "name": "comp-craft",
-  "version": "1.0.3",
-  "description": "A CLI tool for generating React components",
+  "version": "1.0.0",
+  "description": "A simple CLI tool for generating React components",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
