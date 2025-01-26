@@ -43,7 +43,7 @@ const generateComponent = async (componentName, globalStorePath) => {
       componentCode = `
 import React from "react";
 
-type ${componentName}Props {
+type ${componentName}Props = {
   children?: React.ReactNode;
 }
 
