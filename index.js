@@ -14,11 +14,11 @@ const { setPreferredEditor } = require("./commands/setEditor");
 const generateComponent = require("./commands/generateComponent");
 
 // * global path
-const globalStorePath = path.join(os.homedir(), ".react-component-cli", "templates");
+const globalStorePath = path.join(os.homedir(), ".comp-craft", "templates");
 
 if (!fs.existsSync(globalStorePath)) fs.mkdirSync(globalStorePath, { recursive: true });
 
-const globalConfigPath = path.join(os.homedir(), ".react-component-cli", "config.json");
+const globalConfigPath = path.join(os.homedir(), ".comp-craft", "config.json");
 
 // * Ensure global config file exists
 if (!fs.existsSync(globalConfigPath)) fs.writeFileSync(globalConfigPath, JSON.stringify({ editor: "code" }, null, 2)); // * Default to VS Code
