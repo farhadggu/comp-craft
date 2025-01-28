@@ -1,6 +1,6 @@
-# CompCraft CLI - Your React Component Factory! <a href="https://www.npmjs.com/package/veestream" rel="nofollow"><img src="https://img.shields.io/npm/v/veestream.svg?style=flat" alt="NPM version" style="max-width: 100%;"></a>
+# CompCraft CLI - Your React Component Factory! <a href="https://www.npmjs.com/package/comp-craft" rel="nofollow"><img src="https://img.shields.io/npm/v/comp-craft.svg?style=flat" alt="NPM version" style="max-width: 100%;"></a>
 
-![VeeStream GIF](https://github.com/farhadggu/comp-craft/raw/main/public/logo.jpg)
+![comp-craft LOGO](https://github.com/farhadggu/comp-craft/raw/main/public/logo.jpg)
 
 CompCraft CLI is a command-line tool designed to simplify and streamline your workflow by automating the generation, management, and organization of React components. Whether you're a seasoned developer or just starting out, CompCraft ensures you spend more time crafting logic than creating boilerplate code.
 
